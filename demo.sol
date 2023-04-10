@@ -49,11 +49,17 @@ interface IInterchainGasPaymaster {
 }
 
 contract demo {
+
+//Given in docs
+
     ILiquidityLayerRouter liquidityLayer =
         ILiquidityLayerRouter(0x2abe0860D81FB4242C748132bD69D125D88eaE26);
+//Given in docs
 
     IInterchainGasPaymaster igp =
         IInterchainGasPaymaster(0xF987d7edcb5890cB321437d8145E3D51131298b6);
+        
+//events are for debugging
 
     event message(bytes32 message);
     event recieve(
@@ -63,6 +69,12 @@ contract demo {
         address _token,
         uint256 _amount
     );
+
+// executes a message with USDC transfer 
+// _bridge = Portal 
+// _messageBody = 0x00
+// _amount to be approved importing the USDC code which is a erc 20 contract on mumbai network as I had funds in that, addresses can be found below 
+
 
     function lowLevelCall(
         uint32 _destinationDomain,
@@ -108,3 +120,16 @@ contract demo {
         emit recieve(_origin, _sender, _message, _token, _amount);
     }
 }
+
+
+
+// USDC ADDRESS MUMBAI : 0x0FA8781a83E46826621b3BC094Ea2A0212e71B23
+// LL CONTRACT ADDRESS MUMBAI : 0xdB9a4936dEDE3DB864730AB85c8b947fe249A628
+// LL CONTRACT ADDRESS ALJAFORES : 0x57339eA16a58e53f6Eb64fa31787FcE6117B5af3
+
+// Reciepient address for MUMBAI : 0x00000000000000000000000057339ea16a58e53f6eb64fa31787fce6117b5af3
+// Reciepeint address for Alfajores : 0x000000000000000000000000db9a4936dede3db864730ab85c8b947fe249a628
+
+
+
+
